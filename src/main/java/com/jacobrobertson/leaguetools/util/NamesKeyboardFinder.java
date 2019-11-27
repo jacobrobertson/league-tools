@@ -20,6 +20,7 @@ public class NamesKeyboardFinder {
   }
   
   private static final int MAX_KEY_COUNT = 10;
+  private static final int MAX_OTHER_CHAMPS_COUNT = 5;
   private NameInfo[] nameInfos;
   
   enum Hands {
@@ -220,12 +221,18 @@ public class NamesKeyboardFinder {
     if (keys.isUnique()) {
 //      buf.append(hand);
 //      buf.append(" ");
-      buf.append(keys.typedName.length());
-      buf.append(" - ");
+//      buf.append(keys.typedName.length());
+//      buf.append(" - ");
       buf.append(keys.typedName);
 //      buf.append(")");
+    } else if (keys.typedName == null || keys.otherChampionNames.size() > MAX_OTHER_CHAMPS_COUNT) {
+      buf.append(" - "); // means there are no letters on that hand at all
     } else {
-      buf.append(" - ");
+      buf.append(keys.typedName);
+      if (!keys.otherChampionNames.isEmpty()) {
+        buf.append(" +");
+        buf.append(keys.otherChampionNames.size());
+      }
     }
     
   }
