@@ -141,4 +141,7 @@ allData.forEach(function(data) {
 	output += "\n";
 });
 
-alert(output);
+//alert(output);
+function gamesParser() {
+	alert("hello abc");
+}
